@@ -1,0 +1,1 @@
+CREATE table urls(long varchar(255) PRIMARY KEY NOT NULL,short varchar(255) NOT NULL);
