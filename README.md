@@ -1,7 +1,7 @@
 # Сервис для сокращения ссылок
 ## Тестовое задание Ozon Fintech
 ### Для запуска с выбором типа хранилища
-####Установка
+#### Установка
 `docker-compose build `
 #### Запуск
 `docker-compose run go-app go run main.go -type repo ` - с БД в качестве хранилища
