@@ -24,7 +24,7 @@ func New(storage StorageInterface) *server {
 
 func (s *server) Start(addr string) error {
 	fmt.Println("Server running on port 8000")
-	s.g.POST("/newUrl", func(context *gin.Context) {
+	s.g.POST("/postLong", func(context *gin.Context) {
 		var request = new(dto.PostLongRequest)
 		var response = new(dto.PostLongResponse)
 
