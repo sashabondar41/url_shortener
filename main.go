@@ -37,7 +37,7 @@ func chooseStorage() (server.StorageInterface, error) {
 	var storageType string
 	flag.StringVar(&storageType, "type", repo, "Declaration of storage type")
 	flag.Parse()
-	fmt.Println(storageType)
+	fmt.Println("storage type: ", storageType)
 	if storageType == repo {
 		db, err := loadDatabase()
 		if err != nil {

@@ -54,7 +54,6 @@ func (r *inMemory) PostLong(longUrl string) (string, error) {
 	}
 	r.mu.Lock()
 	r.urls[shortUrl] = longUrl
-	fmt.Println(r.urls)
 	r.mu.Unlock()
 	return shortUrl, nil
 }
