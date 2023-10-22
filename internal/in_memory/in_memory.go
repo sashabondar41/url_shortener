@@ -43,14 +43,16 @@ func (r *inMemory) PostLong(longUrl string) (string, error) {
 	if err == nil {
 		return shortUrl, nil
 	}
+	tempUrl := longUrl
 	for {
-		shortUrl = short_creator.CreateShortUrl(longUrl)
+		shortUrl = short_creator.CreateShortUrl(tempUrl)
 		r.mu.RLock()
-		_, err = searchLong(&r.urls, shortUrl)
+		found, err := searchLong(&r.urls, shortUrl)
 		r.mu.RUnlock()
 		if err == ErrNotFound {
 			break
 		}
+		tempUrl += found[len(found)-3:]
 	}
 	r.mu.Lock()
 	r.urls[shortUrl] = longUrl

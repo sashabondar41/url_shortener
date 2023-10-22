@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package urlshortener;
+
+option go_package = "/pb";
+
+service UrlShortener {
+  rpc ShortenLong(ShortenLongRequest) returns (ShortenLongResponse) {}
+  rpc GetLong(GetLongRequest) returns (GetLongResponse) {}
+}
+
+message ShortenLongRequest {
+  string longUrl = 1;
+}
+
+message ShortenLongResponse {
+  string shortUrl = 1;
+}
+
+message GetLongRequest {
+  string shortUrl = 1;
+}
+
+message GetLongResponse {
+  string longUrl = 1;
+}

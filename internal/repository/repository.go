@@ -58,13 +58,14 @@ func (r *repository) PostLong(longUrl string) (string, error) {
 	}
 	for {
 		urls.Short = short_creator.CreateShortUrl(longUrl)
-		_, err = searchLong(r.db, urls.Short)
+		found, err := searchLong(r.db, urls.Short)
 		if errors.Is(err, sql.ErrNoRows) {
 			break
 		}
 		if err != nil {
 			return "", fmt.Errorf("longURL search failed: %w", err)
 		}
+		longUrl += found[len(found)-3:]
 	}
 	if err = insertNew(r.db, urls); err != nil {
 		return "", err

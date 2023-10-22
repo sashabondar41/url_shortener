@@ -6,11 +6,14 @@ import (
 	"fmt"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"google.golang.org/grpc"
 	"log"
+	"net"
 	"os"
 	"urlshortener/internal/in_memory"
 	"urlshortener/internal/repository"
 	"urlshortener/internal/server"
+	"urlshortener/pb"
 )
 
 const (
@@ -20,17 +23,27 @@ const (
 
 func main() {
 	if err := loadEnv(); err != nil {
-		log.Fatalln(err)
+		log.Fatalf("failed to load .env file: %v", err)
 	}
 	stg, err := chooseStorage()
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalf("failed to initialize storage: %v", err)
 	}
-	srv := server.New(stg)
+	lis, err := net.Listen("tcp", ":8000")
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	srv := grpc.NewServer()
+	pb.RegisterUrlShortenerServer(srv, server.New(stg))
+	log.Printf("server listening at %v", lis.Addr())
+	if err := srv.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+	/*srv := server.New(stg)
 	err = srv.Start(":8000")
 	if err != nil {
 		log.Fatalln(err.Error())
-	}
+	}*/
 }
 
 func chooseStorage() (server.StorageInterface, error) {

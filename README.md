@@ -1,12 +1,9 @@
 # Тестовое задание Ozon Fintech. Сервис для сокращения ссылок
 ## Установка и запуск
 ### Для запуска с выбором типа хранилища
-#### Установка
-`docker-compose build `
-#### Запуск
 `docker-compose run -p 8000:8000 urlshortener go run main.go -type repo ` - с БД в качестве хранилища
 
-или
+#### или
 
 `docker-compose run -p 8000:8000 urlshortener go run main.go -type mem ` - с in-memory хранилищем
 ### Для быстрого запуска только с БД
@@ -14,12 +11,18 @@
 
 ## Скриншоты api-тестов
 ### Успешное создание короткой ссылки
-![valid_post_long](https://github.com/sashabondar41/url_shortener/assets/75033340/915629d7-09ca-4b76-9634-2929611fd65e)
+![valid_post_long](https://github.com/sashabondar41/url_shortener/assets/75033340/c9c3b641-31d8-487f-a3aa-19b86faf8ded)
 ### Некорректный URL при создании короткой ссылки
-![invalid_url_post_long](https://github.com/sashabondar41/url_shortener/assets/75033340/85bee76c-5705-4016-a6ef-29877c4cd39d)
+![invalid_url_post_long](https://github.com/sashabondar41/url_shortener/assets/75033340/85ed95ce-c867-432d-a5ef-13076091445e)
 ### Успешное получение оригинальной ссылки по короткой
-![valid_get_long](https://github.com/sashabondar41/url_shortener/assets/75033340/f361bb41-8eeb-4f58-b956-e004a6a74385)
+![valid_get_long](https://github.com/sashabondar41/url_shortener/assets/75033340/6ea5d63d-6253-42f5-ae02-8b9e61db66cf)
 ### Отстутсвующая в хранилище короткая ссылка при поиске оригинальной
-![not_found_get_long](https://github.com/sashabondar41/url_shortener/assets/75033340/d967144b-cc75-4af3-a9f2-0969a9ed75f1)
+![not_found_get_long](https://github.com/sashabondar41/url_shortener/assets/75033340/07748357-bd28-4e23-b657-e5fcb95eb24b)
 ### Некорректный URL при поиске оригинальной ссылки
-![invalid_url_get_long](https://github.com/sashabondar41/url_shortener/assets/75033340/c019fbb2-8a6f-4fce-b5c9-e6c350923656)
+![invalid_url_get_long](https://github.com/sashabondar41/url_shortener/assets/75033340/85e462b7-46ee-4966-8dc9-9d9aae9e183c)
+
+
+
+
+
+
